@@ -1,0 +1,3 @@
+Juan,Perez,11111111-1,Colmena,Habitat
+Luis,Gomez,33.333.333-3,Consalud,Cuprum
+Ana,Soto,22.222.222-2,Banmedica,Provida
