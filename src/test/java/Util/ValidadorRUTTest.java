@@ -24,5 +24,4 @@ class ValidadorRUTTest {
         assertEquals("12.345.678-9", ValidadorRUT.formatearRUT("123456789"));
         assertEquals("12.345.678-K", ValidadorRUT.formatearRUT("12345678k"));
     }
-
 }

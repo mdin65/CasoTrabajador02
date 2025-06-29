@@ -72,5 +72,4 @@ public class MenuSwingTest {
 
         assertTrue(ejecucionExitosa, "Debe encontrar y hacer click en el botón");
     }
-
 }

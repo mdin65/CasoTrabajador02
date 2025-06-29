@@ -95,4 +95,5 @@ class TrabajadorControllerTest {
 
         assertEquals(1, controller.getTrabajadores().size());
     }
+
 }
