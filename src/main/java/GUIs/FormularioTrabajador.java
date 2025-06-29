@@ -21,7 +21,6 @@ public class FormularioTrabajador extends JDialog {
         setLocationRelativeTo(parent);
         setLayout(new GridLayout(6, 2));
 
-        // Campos y etiquetas
         add(new JLabel("Nombre:"));
         add(nombreField);
         add(new JLabel("Apellido:"));
@@ -35,7 +34,6 @@ public class FormularioTrabajador extends JDialog {
 
         JButton btnGuardar = getJButton(controller, trabajador);
 
-        // Espacio vacío + botón guardar
         add(new JLabel());
         add(btnGuardar);
 
