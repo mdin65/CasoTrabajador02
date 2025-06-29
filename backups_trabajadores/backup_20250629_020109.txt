@@ -1,0 +1,4 @@
+Raul,Ibañez,21.365.896-5,Carmelas,Casas
+Luis,Gomez,33.333.333-3,Consalud,Cuprul
+Carla,Monrroy,21.123.456-9,Alamu,ALomnu
+Alba,Soto,9.856.215-3,Carmela,Murcia
