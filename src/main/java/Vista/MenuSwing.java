@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuSwing extends JFrame implements MenuUI {
-    private final TrabajadorController controller;
+    private TrabajadorController controller;
 
     public MenuSwing(DataTrabajador dataHandler) {
         this.controller = new TrabajadorController(dataHandler);
@@ -18,6 +18,9 @@ public class MenuSwing extends JFrame implements MenuUI {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         initComponents();
+    }
+    protected void setController(TrabajadorController controller) {
+        this.controller = controller;
     }
 
     private void initComponents() {

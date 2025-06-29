@@ -22,7 +22,6 @@ public class CargaDatos  {
         Path archivoPrincipal = Paths.get("src/main/resources/" + ARCHIVO_TRABAJADORES);
 
         try {
-            // 1. Intentar cargar desde archivo principal
             if (Files.exists(archivoPrincipal)) {
                 try (BufferedReader br = Files.newBufferedReader(archivoPrincipal)) {
                     cargarDesdeArchivo(br, trabajadores);
@@ -30,7 +29,6 @@ public class CargaDatos  {
                 }
             }
 
-            // 2. Si no existe, buscar el último backup
             Path ultimoBackup = obtenerUltimoBackup();
             if (ultimoBackup != null) {
                 System.out.println("Cargando desde backup: " + ultimoBackup);
@@ -43,7 +41,6 @@ public class CargaDatos  {
                 }
             }
 
-            // 3. Si no hay backups, crear archivo vacío
             Files.createFile(archivoPrincipal);
             System.out.println("Archivo creado: " + archivoPrincipal);
 
@@ -122,7 +119,6 @@ public class CargaDatos  {
         Path archivoOriginal = Paths.get("src/main/resources/" + ARCHIVO_TRABAJADORES);
         Path dirBackups = Paths.get(DIR_BACKUPS);
 
-        // Crear directorio si no existe
         if (!Files.exists(dirBackups)) {
             try {
                 Files.createDirectories(dirBackups);
