@@ -11,8 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class CargaDatos {
-
+public class CargaDatos  {
     private static final String ARCHIVO_TRABAJADORES = "Trabajadores.txt";
     private static final String DIR_BACKUPS = "backups_trabajadores";
     private static final int MAX_BACKUPS = 5;

@@ -1,19 +1,24 @@
 package Controlador;
 
+import Persistencia.DataTrabajador;
 import Modelo.Trabajador;
-import Util.CargaDatos;
 import Util.ValidadorRUT;
 
 import java.util.Map;
 import java.util.Scanner;
 
 public class TrabajadorController {
-    private Map<String, Trabajador> trabajadores;
-    private boolean modoPruebas = false; // Flag para utilizar caso prueba, asi no elimina el documento
+    private final Map<String, Trabajador> trabajadores;
+    private boolean modoPruebas = false;
+    private final DataTrabajador dataHandler; // Flag para utilizar caso prueba, asi no elimina el documento
 
-    // Constructor
-    public TrabajadorController(Map<String, Trabajador> trabajadores) {
-        this.trabajadores = trabajadores;
+    public Map<String, Trabajador> getTrabajadores() {
+        return trabajadores;
+    }
+
+    public TrabajadorController(DataTrabajador dataHandler) {
+        this.dataHandler = dataHandler;
+        this.trabajadores = dataHandler.cargarTrabajadores();
     }
 
     public void mostrarTodos() {
@@ -59,7 +64,7 @@ public class TrabajadorController {
 
         Trabajador nuevo = new Trabajador(nombre, apellido, rut, isapre, afp);
         trabajadores.put(rut, nuevo);
-        CargaDatos.guardarTrabajadores(trabajadores);
+        dataHandler.guardarTrabajadores(trabajadores);
 
         System.out.println("Trabajador agregado exitosamente!");
     }
@@ -96,6 +101,13 @@ public class TrabajadorController {
     private String obtenerRUTParaEdicion(Scanner sc) {
         System.out.print("\nIngrese RUT del trabajador a editar: ");
         String rut = sc.nextLine();
+
+        if (!ValidadorRUT.validarFormatoRUT(rut)) {
+            System.out.println("RUT inválido.");
+            return null;
+        }
+
+        rut = ValidadorRUT.formatearRUT(rut);
 
         if (!trabajadores.containsKey(rut)) {
             System.out.println("Trabajador no encontrado.");
@@ -160,7 +172,7 @@ public class TrabajadorController {
     }
 
     private void guardarCambios() {
-        CargaDatos.guardarTrabajadores(trabajadores);
+        dataHandler.guardarTrabajadores(trabajadores);
         System.out.println("Cambios guardados exitosamente!");
     }
     public void eliminarTrabajador(Scanner sc) {
@@ -175,7 +187,8 @@ public class TrabajadorController {
         ejecutarEliminacion(rut);
 
         if (!modoPruebas) {
-            CargaDatos.guardarTrabajadores(trabajadores);
+            dataHandler.guardarTrabajadores(trabajadores);
+
         }
     }
 
@@ -219,6 +232,14 @@ public class TrabajadorController {
 
     public void setModoPruebas(boolean activar) {
         this.modoPruebas = activar;
+    }
+    public void eliminarPorRut(String rut) {
+        trabajadores.remove(rut);
+        guardar();
+    }
+
+    public void guardar() {
+        dataHandler.guardarTrabajadores(trabajadores);
     }
 
 }

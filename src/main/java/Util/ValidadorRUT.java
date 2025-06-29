@@ -2,23 +2,22 @@ package Util;
 
 public class ValidadorRUT {
 
+    public static String limpiarRUT(String rut) {
+        return rut.replace(".", "").replace("-", "").replace(" ", "").toUpperCase();
+    }
 
     public static boolean validarFormatoRUT(String rut) {
-        // Eliminar puntos, guión y espacios
-        String rutLimpio = rut.replace(".", "").replace("-", "").replace(" ", "");
-
-        // Validar: cantidad correcta de números(7-8), que sean solo número y que el DV sea número o K
-        return rutLimpio.matches("^[0-9]{7,8}[0-9kK]$");
+        String rutLimpio = limpiarRUT(rut);
+        return rutLimpio.matches("^[0-9]{7,8}[0-9K]$");
     }
 
     public static String formatearRUT(String rut) {
-        String rutLimpio = rut.replace(".", "").replace("-", "").replace(" ", "");
+        String rutLimpio = limpiarRUT(rut);
         if (rutLimpio.length() < 2) return rut;
 
         String cuerpo = rutLimpio.substring(0, rutLimpio.length() - 1);
         char dv = rutLimpio.charAt(rutLimpio.length() - 1);
 
-        // Aplicar formato con puntos
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < cuerpo.length(); i++) {
             if (i > 0 && (cuerpo.length() - i) % 3 == 0) {

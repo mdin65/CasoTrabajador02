@@ -1,22 +1,19 @@
 package Vista;
 
 import Controlador.TrabajadorController;
-import Modelo.Trabajador;
+import Persistencia.DataTrabajador;
 
-import java.util.Map;
 import java.util.Scanner;
 
-public class MenuCLI {
-    private Map<String, Trabajador> trabajadores;
-    private Scanner scanner;
+public class MenuCLI implements MenuUI {
+
+    private Scanner scanner = new Scanner(System.in);
     private TrabajadorController controller;
 
-    public MenuCLI(Map<String, Trabajador> trabajadores) {
-        this.trabajadores = trabajadores;
-        this.scanner = new Scanner(System.in);
-        this.controller = new TrabajadorController(trabajadores);
+    public MenuCLI(DataTrabajador dataHandler) {
+        this.controller = new TrabajadorController(dataHandler);
     }
-
+    @Override
     public void iniciar() {
         int opcion;
         do {

@@ -1,14 +1,13 @@
 package App;
 
-import Modelo.Trabajador;
-import Util.CargaDatos;
-import Vista.MenuCLI;
 
-import java.util.Map;
+import Persistencia.*;
+import Vista.*;
 
 public class Principal {
     public static void main(String[] args) {
-        Map<String, Trabajador> trabajadores = CargaDatos.cargaTrabajadoresDesdeResources();
-        new MenuCLI(trabajadores).iniciar();
+        DataTrabajador dataHandler = new ArchivoTrabajadorDAO();
+        MenuUI menu = new MenuSwing(dataHandler);
+        menu.iniciar();
     }
 }
