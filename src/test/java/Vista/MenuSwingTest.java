@@ -21,7 +21,7 @@ public class MenuSwingTest {
         DataTrabajador dataHandler = new ArchivoTrabajadorDAO();
         menuSwing = new MenuSwing(dataHandler);
         controller = new TrabajadorController(dataHandler);
-        menuSwing.setController(controller); // Uso del método protegido
+        menuSwing.setController(controller);
     }
 
     @Test
